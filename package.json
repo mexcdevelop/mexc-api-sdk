@@ -1,0 +1,61 @@
+{
+  "name": "mexc-api-sdk",
+  "version": "1.0.0",
+  "description": "mexc api sdk",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "jsii",
+    "build:watch": "jsii --watch",
+    "package": "rm -rf ./dist && jsii-pacmak"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxcdevelop/mexc-api-sdk.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "MEXC",
+    "email": "suggest@mexc.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "sync-request": "6.1.0"
+  },
+  "devDependencies": {
+    "jsii": "1.44.1",
+    "jsii-pacmak": "1.44.1"
+  },
+  "bugs": {
+    "url": "https://github.com/mxcdevelop/mexc-api-sdk/issues"
+  },
+  "homepage": "https://github.com/mxcdevelop/mexc-api-sdk#readme",
+  "stability": "stable",
+  "jsii": {
+    "outdir": "dist",
+    "versionFormat": "short",
+    "targets": {
+      "java": {
+        "package": "Mexc.Sdk",
+        "maven": {
+          "groupId": "Mexc",
+          "artifactId": "Core"
+        }
+      },
+      "python": {
+        "distName": "mexc-sdk",
+        "module": "mexc-sdk"
+      },
+      "dotnet": {
+        "namespace": "Mexc.Sdk",
+        "packageId": "Mexc.Sdk"
+      },
+      "go": {
+        "moduleName": "mexc-sdk"
+      }
+    }
+  },
+  "bundledDependencies": [
+    "sync-request"
+  ]
+}
