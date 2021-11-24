@@ -7,7 +7,7 @@
   "scripts": {
     "build": "jsii",
     "build:watch": "jsii --watch",
-    "package": "rm -rf ./dist && jsii-pacmak"
+    "package": "rm -rf ./dist && jsii-pacmak -vvv"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,18 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^16.11.7",
     "sync-request": "6.1.0"
   },
+  "bundledDependencies": [
+    "sync-request",
+    "@types/node"
+  ],
   "devDependencies": {
     "jsii": "1.44.1",
-    "jsii-pacmak": "1.44.1"
+    "jsii-pacmak": "1.44.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
   },
   "bugs": {
     "url": "https://github.com/mxcdevelop/mexc-api-sdk/issues"
@@ -54,8 +61,5 @@
         "moduleName": "mexc-sdk"
       }
     }
-  },
-  "bundledDependencies": [
-    "sync-request"
-  ]
+  }
 }
