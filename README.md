@@ -34,6 +34,71 @@ const apiKey = 'apiKey'
 const apiSecret = 'apiSecret'
 const client = new Mexc.Spot(apiKey, apiSecret);
 ```
+```go
+//Go
+package main
+import (
+	"fmt"
+	"mexc-sdk/mexcsdk"
+)
+
+func main() {
+	apiKey := "apiKey"
+	apiSecret := "apiSecret"
+	spot := mexcsdk.NewSpot(apiKey, apiSecret)
+}
+```
+```go
+// Go
+package main
+import (
+	"fmt"
+	"mexc-sdk/mexcsdk"
+)
+
+func main() {
+	apiKey := "apiKey"
+	apiSecret := "apiSecret"
+	spot := mexcsdk.NewSpot(apiKey, apiSecret)
+}
+```
+```python
+# python
+from mexc-sdk import Spot
+spot = Spot(api_key='apiKey', apiSecret='apiSecret')
+```
+```java
+// java
+import Mexc.Sdk.*;  
+class MyClass {
+  public static void main(String[] args) {
+    String apiKey= "apiKey";
+    String apiSecret= "apiSecret";
+    Spot mySpot = new Spot(apiKey, apiSecret);
+  }
+}
+```
+```C#
+// dotnet
+using System;
+using System.Collections.Generic;
+using Mxc.Sdk;
+
+namespace dotnet
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string  apiKey = "apiKey";
+            string  apiSecret= "apiSecret";
+            var spot = new Spot(apiKey, apiSecret);
+        }
+    }
+}
+
+```
+
 ## Market
 ### Ping
 ```javascript
