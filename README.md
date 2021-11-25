@@ -35,20 +35,6 @@ const apiSecret = 'apiSecret'
 const client = new Mexc.Spot(apiKey, apiSecret);
 ```
 ```go
-//Go
-package main
-import (
-	"fmt"
-	"mexc-sdk/mexcsdk"
-)
-
-func main() {
-	apiKey := "apiKey"
-	apiSecret := "apiSecret"
-	spot := mexcsdk.NewSpot(apiKey, apiSecret)
-}
-```
-```go
 // Go
 package main
 import (
