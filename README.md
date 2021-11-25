@@ -44,6 +44,7 @@ client.time()
 ### Exchange Information
 ```javascript
 client.exchangeInfo(options: any)
+options:{symbol, symbols}
 /**
  * choose one parameter
  * 
@@ -56,41 +57,43 @@ client.exchangeInfo(options: any)
  *      example ["BTCUSDT","BNBBTC"];
  * 
  */
-options:{symbol, symbols}
 ```
 
 ### Recent Trades List
 ```javascript
 client.trades(symbol: string, options: any = { limit: 500 })
+options:{limit}
 /**
  * 
  * limit : 
+ *      Number of returned data
  *      Default 500; 
  *      max 1000;
  * 
  */
-options:{limit}
 ```
 ### Order Book
 ```javascript
 client.depth(symbol: string, options: any = { limit: 100 })
+options:{limit}
 /**
- * 
  * limit : 
+ *      Number of returned data
  *      Default 100;
  *      max 5000;
  *      Valid:[5, 10, 20, 50, 100, 500, 1000, 5000]
  * 
  */
-options:{limit}
 ```
 
 ### Old Trade Lookup
 ```javascript
 client.historicalTrades(symbol: string, options: any = { limit: 500 })
+options:{limit, fromId}
 /**
  * 
  * limit : 
+ *      Number of returned data
  *      Default 500;
  *      max 1000;
  * 
@@ -98,13 +101,13 @@ client.historicalTrades(symbol: string, options: any = { limit: 500 })
  *      Trade id to fetch from. Default gets most recent trades
  * 
  */
-options:{limit, fromId}
 
 ```
 
 ### Aggregate Trades List
 ```javascript
 client.aggTrades(symbol: string, options: any = { limit: 500 })
+options:{fromId, startTime, endTime, limit}
 /**
  * 
  * fromId : 
@@ -117,15 +120,16 @@ client.aggTrades(symbol: string, options: any = { limit: 500 })
  *      end at
  * 
  * limit : 
+ *      Number of returned data
  *      Default 500;
  *      max 1000;
  * 
  */
-options:{fromId, startTime, endTime, limit}
 ```
 ### kline Data
 ```javascript
 client.klines(symbol: string, interval: string, options: any = { limit: 500 })
+options:{ startTime, endTime, limit}
 /**
  * 
  * interval : 
@@ -136,11 +140,6 @@ client.klines(symbol: string, interval: string, options: any = { limit: 500 })
  *      M :month
  *      example : "1m"
  * 
- */
-
-
-/**
- * 
  * startTime : 
  *      start at
  * 
@@ -148,11 +147,11 @@ client.klines(symbol: string, interval: string, options: any = { limit: 500 })
  *      end at
  * 
  * limit : 
+ *      Number of returned data
  *      Default 500;
  *      max 1000;
  * 
  */
-options:{ startTime, endTime, limit}
 ```
 
 ### Current Average Price
@@ -175,18 +174,34 @@ client.bookTicker(symbol?: string)
 ## Trade
 ### Test New Order
 ```javascript
-client.newOrderTest(symbol: string,side: string,orderType: string,options: any = {})
+client.newOrderTest(symbol: string, side: string, orderType: string, options: any = {})
+options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPrice, icebergQty, newOrderRespType, recvWindow}
 /**
  * 
+ * side:
+ *      Order side 
+ *      ENUM:
+ *        BUY
+ *        SELL
+ * 
+ * orderType:
+ *      ENUM:
+ *        LIMIT
+ *        MARKET
+ *        STOP_LOSS
+ *        STOP_LOSS_LIMIT
+ *        TAKE_PROFIT
+ *        TAKE_PROFIT_LIMIT
+ *        LIMIT_MAKER
+ * 
  * timeInForce : 
- *      example: GTC
+ *      How long an order will be active before expiration.
+ *      GTC: Active unless the order is canceled
+ *      IOC: Order will try to fill the order as much as it can before the order expires
+ *      FOK: Active unless the full order cannot be filled upon execution.
  * 
- * quantity :
- *      example: 0.01
- * 
- * quoteOrderQty
- * 
- * price
+ * quoteOrderQty :
+ *      Specify the total quoteOrderQty spent or received
  * 
  * newClientOrderId :
  *      A unique id among open orders. Automatically generated if not sent
@@ -205,22 +220,135 @@ client.newOrderTest(symbol: string,side: string,orderType: string,options: any =
  *      The value cannot be greater than 60000
  * 
  */
-options:{ startTime, endTime, limit}
 
 ```
 
 ### New Order
+```javascript
+client.newOrder(symbol: string, side: string, orderType: string, options: any = {})
+options:{ timeInForce, quantity, quoteOrderQty, price, newClientOrderId, stopPrice, icebergQty, newOrderRespType, recvWindow}
+/**
+ * 
+ * side:
+ *      Order side 
+ *      ENUM:
+ *        BUY
+ *        SELL
+ * 
+ * orderType:
+ *      ENUM:
+ *        LIMIT
+ *        MARKET
+ *        STOP_LOSS
+ *        STOP_LOSS_LIMIT
+ *        TAKE_PROFIT
+ *        TAKE_PROFIT_LIMIT
+ *        LIMIT_MAKER
+ * 
+ * timeInForce : 
+ *      How long an order will be active before expiration.
+ *      GTC: Active unless the order is canceled
+ *      IOC: Order will try to fill the order as much as it can before the order expires
+ *      FOK: Active unless the full order cannot be filled upon execution.
+ * 
+ * quoteOrderQty :
+ *      Specify the total quoteOrderQty spent or received
+ * 
+ * newClientOrderId :
+ *      A unique id among open orders. Automatically generated if not sent
+ * 
+ * stopPrice :
+ *      sed with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders
+ * 
+ * icebergQty :
+ *      Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order
+ * 
+ * newOrderRespType : 
+ *      Set the response JSON. ACK, RESULT, or FULL;
+ *      MARKET and LIMIT order types default to FULL, all other orders default to ACK
+ * 
+ * recvWindow : 
+ *      The value cannot be greater than 60000
+ * 
+ */
+
+```
 
 ### cancel-order
+```javascript
+client.cancelOrder(symbol: string, options:any = {})
+options:{ orderId, origClientOrderId, newClientOrderId}
+/**
+ * 
+ * Either orderId or origClientOrderId must be sent
+ * newClientOrderId:
+ *      Used to uniquely identify this cancel. Automatically generated by default.
+ * 
+ */
+
+```
 
 ### Cancel all Open Orders on a Symbol
-
+```javascript
+client.cancelOpenOrders(symbol: string)
+```
 ### Query Order
-
+```javascript
+client.queryOrder(symbol: string, options:any = {})
+options:{ orderId, origClientOrderId}
+/**
+ * 
+ * Either orderId or origClientOrderId must be sent
+ * 
+ */
+```
 ### Current Open Orders
-
+```javascript
+client.openOrders(symbol: string)
+```
 ### All Orders
+```javascript
+client.allOrders(symbol: string, options: any = { limit: 500 })
+options:{ orderId, startTime, endTime, limit}
 
+/**
+ * 
+ * startTime:
+ *      start at
+ * 
+ * orderId:
+ *      end at
+ * 
+ * limit : 
+ *      Number of returned data
+ *      Default 500;
+ *      max 1000;
+ * 
+ */
+```
 ### Account Information
-
+```javascript
+client.accountInfo()
+```
 ### Account Trade List
+```javascript
+client.accountTradeList(symbol: string, options:any = { limit: 500 })
+options:{ orderId, startTime, endTime, fromId, limit}
+
+/**
+ * 
+ * startTime:
+ *      start at
+ * 
+ * orderId:
+ *      end at
+ * fromId:
+ *      TradeId to fetch from. Default gets most recent trades
+ * 
+ * limit : 
+ *      Number of returned data
+ *      Default 500;
+ *      max 1000;
+ * 
+ */
+```
