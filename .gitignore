@@ -2,17 +2,10 @@ tsconfig.json
 .jsii
 .DS_Store
 
-start.ts
-
-src/*.js
-src/*.d.ts
-src/modules/*.js
-src/modules/*.d.ts
-src/util/*.js
-src/util/*.d.ts
+*.js
+*.d.ts
 
 start.ts
-dist/
 
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
