@@ -1,7 +1,7 @@
 {
-  "name": "mexc-api-sdk",
+  "name": "mexc-sdk",
   "version": "1.0.0",
-  "description": "mexc api sdk",
+  "description": "mexc sdk",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
@@ -51,7 +51,7 @@
       },
       "python": {
         "distName": "mexc-sdk",
-        "module": "mexc-sdk"
+        "module": "mexc_sdk"
       },
       "dotnet": {
         "namespace": "Mexc.Sdk",
