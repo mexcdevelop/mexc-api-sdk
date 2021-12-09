@@ -1,4 +1,5 @@
 import { UserData } from './userData';
+import { fromatData } from '../util'
 
 export class Trade extends UserData {
     /**
@@ -37,7 +38,10 @@ export class Trade extends UserData {
             side: side.toUpperCase(),
             type: orderType.toUpperCase()
         }))
-        return JSON.parse(res.getBody('utf8'))
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -76,7 +80,10 @@ export class Trade extends UserData {
             side: side.toUpperCase(),
             type: orderType.toUpperCase()
         }))
-        return JSON.parse(res.getBody('utf8'))
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -95,7 +102,10 @@ export class Trade extends UserData {
         const res = this.signRequest('DELETE', '/order', Object.assign(options, {
             symbol: symbol.toUpperCase()
         }))
-        return JSON.parse(res.getBody())
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -108,7 +118,10 @@ export class Trade extends UserData {
         const res = this.signRequest('DELETE', '/openOrders', {
             symbol: symbol.toUpperCase()
         })
-        return JSON.parse(res.getBody())
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -117,7 +130,7 @@ export class Trade extends UserData {
      * @param symbol 
      * @param options 
      * ```
-     * [options.orderId]
+     * [options.orderId] - At least one of orderId and origClientOrderId needs to be sent
      * [options.origClientOrderId]
      * ```
      * @returns 
@@ -126,7 +139,10 @@ export class Trade extends UserData {
         const res = this.signRequest('GET', '/order', Object.assign(options, {
             symbol: symbol.toUpperCase()
         }))
-        return JSON.parse(res.getBody())
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -137,7 +153,10 @@ export class Trade extends UserData {
      */
     public openOrders(symbol: string) {
         const res = this.signRequest('GET', '/openOrders', { symbol: symbol.toUpperCase()})
-        return JSON.parse(res.getBody())
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 
     /**
@@ -146,7 +165,7 @@ export class Trade extends UserData {
      * @param symbol 
      * @param options 
      * ```
-     * [options.orderId]
+     * [options.orderId] - If startTime and endTime are set, orderId does not need to be set
      * [options.startTime]
      * [options.endTime]
      * [options.limit] - value between 1 and 1000, default is 500
@@ -157,6 +176,9 @@ export class Trade extends UserData {
         const res = this.signRequest('GET', '/allOrders', Object.assign(options, {
             symbol: symbol.toUpperCase()
         }))
-        return JSON.parse(res.getBody())
+        const rawData = JSON.parse(res.getBody());
+        const formatDatas = fromatData(rawData);
+    
+        return formatDatas;
     }
 }

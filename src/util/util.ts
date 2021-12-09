@@ -6,8 +6,7 @@ const createRequest = (config: any) => {
 }
 
 const stringifyKeyValuePair = ([key, value]: any[]) => {
-    const valueString = Array.isArray(value) ? `["${value.join('","')}"]` : value
-    return `${key}=${encodeURIComponent(valueString)}`
+    return `${key}=${encodeURIComponent(value)}`
 }
 
 const removeEmptyValue = (obj: any) => {
@@ -34,9 +33,24 @@ const buildQueryString = (params: any) => {
       .join('&')
 }
 
+const fromatData = (datas: any): any => {
+    if(Array.isArray(datas)) {
+        return datas.map((data: any) => {
+            return fromatData(data)
+        })
+    } else if (typeof datas === "object" && datas !== null) {
+            const newObj: any = {}
+            Object.entries(datas).map(([key, value]: any[]) => newObj[key] = fromatData(value))
+            return newObj;
+    } else {
+        return (datas === undefined || datas === null) ? "" : datas
+    }
+}
+
 export {
     createRequest,
     buildQueryString,
     removeEmptyValue,
-    isEmptyValue
+    isEmptyValue,
+    fromatData
 }

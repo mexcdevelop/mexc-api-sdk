@@ -50,7 +50,7 @@ func main() {
 ```
 ```python
 # python
-from mexc-sdk import Spot
+from mexc_sdk import Spot
 spot = Spot(api_key='apiKey', apiSecret='apiSecret')
 ```
 ```java

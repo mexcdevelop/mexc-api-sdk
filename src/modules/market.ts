@@ -1,4 +1,5 @@
 import { Base } from './base';
+import { fromatData } from '../util'
 
 export class Market extends Base {
   /**
@@ -7,7 +8,7 @@ export class Market extends Base {
    * @param options
    * ```
    * [options.symbol] - symbol(optional) ex: BTCUSDT.
-   * [options.symbols] - an array of symbols, add double quote for each symbol in list. ex: ["BTCUSDT","BNBBTC"].
+   * [options.symbols] - for mutiple symbols, add comma for each symbol in string. ex: BTCUSDT,BNBBTC .
    *```
    *  @returns
    */
@@ -16,12 +17,14 @@ export class Market extends Base {
       options["symbol"] = options["symbol"].toUpperCase();
     }
     if (Object.keys(options).includes("symbols")) {
-      options["symbols"] = options["symbols"].map((symbol: any) => symbol.toUpperCase());
+      options["symbols"] = options["symbols"].split(',').map((symbol: any) => symbol.toUpperCase()).join(',');
     }
 
     const res = this.publicRequest("GET", "/exchangeInfo", options);
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
 
-    return JSON.parse(res.getBody());
+    return formatDatas;
   }
 
   /**
@@ -43,7 +46,10 @@ export class Market extends Base {
       })
     );
 
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
@@ -65,7 +71,10 @@ export class Market extends Base {
       })
     );
 
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
@@ -87,12 +96,16 @@ export class Market extends Base {
       })
     );
 
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
    * Compressed/Aggregate Trades List
-   *
+   * 
+   * Note: If sending startTime and endTime, the interval must be less than one hour
    * @param symbol
    * @param options
    * ```
@@ -112,7 +125,10 @@ export class Market extends Base {
       })
     );
 
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
@@ -137,7 +153,10 @@ export class Market extends Base {
         interval: interval,
       })
     );
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
@@ -147,7 +166,10 @@ export class Market extends Base {
    */
   avgPrice(symbol: string) {
     const res = this.publicRequest("GET", "/avgPrice", { symbol: symbol.toUpperCase() });
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 
   /**
@@ -161,8 +183,10 @@ export class Market extends Base {
     }
 
     const res = this.publicRequest("GET", "/ticker/24hr", { symbol });
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
 
-    return JSON.parse(res.getBody());
+    return formatDatas;
   }
 
   /**
@@ -174,8 +198,12 @@ export class Market extends Base {
     if (symbol) {
       symbol = symbol.toUpperCase();
     }
+    
+    const res = this.publicRequest("GET", "/ticker/price", { symbol });
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
 
-    return this.publicRequest("GET", "/api/v3/ticker/price", { symbol });
+    return formatDatas;
   }
 
   /**
@@ -188,6 +216,9 @@ export class Market extends Base {
     }
 
     const res = this.publicRequest("GET", "/ticker/bookTicker", { symbol });
-    return JSON.parse(res.getBody());
+    const rawData = JSON.parse(res.getBody());
+    const formatDatas = fromatData(rawData);
+
+    return formatDatas;
   }
 }
