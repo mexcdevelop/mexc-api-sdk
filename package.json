@@ -7,7 +7,7 @@
   "scripts": {
     "build": "jsii",
     "build:watch": "jsii --watch",
-    "package": "rm -rf ./dist && jsii-pacmak -vvv"
+    "package": "mv ./test ../ && rm -rf ./dist && jsii-pacmak -vvv && mv ../test ./"
   },
   "repository": {
     "type": "git",

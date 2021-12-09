@@ -1,4 +1,5 @@
 import { Common } from './common';
+import { fromatData } from '../util'
 
 export class UserData extends Common {
     /**
@@ -7,8 +8,11 @@ export class UserData extends Common {
      * @returns 
      */
     public accountInfo() {
-      const res = this.publicRequest('GET', '/account')
-      return JSON.parse(res.getBody())
+      const res = this.signRequest ('GET', '/account')
+      const rawData = JSON.parse(res.getBody());
+      const formatDatas = fromatData(rawData);
+  
+      return formatDatas;
     }
   
   
@@ -27,9 +31,12 @@ export class UserData extends Common {
      * @returns 
      */
     public accountTradeList(symbol: string, options:any = { limit: 500 }) {
-      const res = this.publicRequest('GET', '/myTrades', Object.assign(options, {
+      const res = this.signRequest('GET', '/myTrades', Object.assign(options, {
         symbol: symbol.toUpperCase()
       }))
-      return JSON.parse(res.getBody())
+      const rawData = JSON.parse(res.getBody());
+      const formatDatas = fromatData(rawData);
+  
+      return formatDatas;
     }
   }
