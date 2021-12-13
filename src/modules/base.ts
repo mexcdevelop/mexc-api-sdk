@@ -3,14 +3,13 @@ import * as crypto from 'crypto';
 
 export class Base {
   public config: any = {};
-  constructor(apiKey: any, apiSecret: any) {
+  constructor(apiKey: string, apiSecret: string) {
     this.config.apiKey = apiKey;
     this.config.apiSecret = apiSecret;
-    // this.config.baseURL = 'https://www.mxctest.com/open/api/v2';
     this.config.baseURL = 'https://gatewayapi.mxctest.com/api/v3';
   }
 
-  public publicRequest (method: any, path: any, paramsObj: any = {}): any {
+  public publicRequest (method: string, path: string, paramsObj: any = {}): any {
     paramsObj = removeEmptyValue(paramsObj)
     paramsObj = buildQueryString(paramsObj)
     if(paramsObj !== '') {
@@ -23,12 +22,12 @@ export class Base {
       url: path,
       headers: {
         'Content-Type': 'application/json',
-        'X-MBX-APIKEY': this.config.apiKey
+        'X-MEXC-APIKEY': this.config.apiKey
       }
     })
   }
 
-  public signRequest(method: any, path: any, paramsObj: any = {}): any {
+  public signRequest(method: string, path: string, paramsObj: any = {}): any {
     const timestamp = Date.now()
     paramsObj = removeEmptyValue(paramsObj)
     const queryString = buildQueryString({ ...paramsObj, timestamp })
@@ -43,7 +42,7 @@ export class Base {
       url: `${path}?${queryString}&signature=${signature}`,
       headers: {
         'Content-Type': 'application/json',
-        'X-MBX-APIKEY': this.config.apiKey
+        'X-MEXC-APIKEY': this.config.apiKey
       }
     })
   }
