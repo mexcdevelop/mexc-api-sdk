@@ -1,7 +1,4 @@
-import { Base } from './base';
+import { Common } from './common';
 
-export class UserData extends Base {
-  constructor(apiKey = '', apiSecret = '') {
-    super(apiKey, apiSecret);
-  }
+export class UserData extends Common {
 }
