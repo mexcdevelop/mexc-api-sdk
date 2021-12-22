@@ -12,7 +12,6 @@ src/util/*.js
 src/util/*.d.ts
 
 start.ts
-dist/
 
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
@@ -76,8 +75,6 @@ typings/
 # Optional REPL history
 .node_repl_history
 
-# Output of 'npm pack'
-*.tgz
 
 # Yarn Integrity file
 .yarn-integrity
