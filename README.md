@@ -1,6 +1,13 @@
 # mexc-api-sdk
 
  MEXC Official Market and trade api sdk, easy to connection and send request to MEXC open api !
+ 
+ 
+## Installation
+ 1. git clone https://github.com/mxcdevelop/mexc-api-sdk.git
+ 2. cd dist/{language} and unzip the file
+ 3. we offer five language : dotnet, go, java, js, python
+
 ## Table of APIS
   - [Init](#init)
   - [Market](#market)
