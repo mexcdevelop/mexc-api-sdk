@@ -6,13 +6,13 @@ export class Base {
   constructor(apiKey: string, apiSecret: string) {
     this.config.apiKey = apiKey;
     this.config.apiSecret = apiSecret;
-    this.config.baseURL = 'https://api.mexc.com/api/v3';
+    this.config.baseURL = 'https://api.mexc.com/api/v31';
   }
 
-  public publicRequest (method: string, path: string, paramsObj: any = {}): any {
+  public publicRequest(method: string, path: string, paramsObj: any = {}): any {
     paramsObj = removeEmptyValue(paramsObj)
     paramsObj = buildQueryString(paramsObj)
-    if(paramsObj !== '') {
+    if (paramsObj !== '') {
       path = `${path}?${paramsObj}`
     }
 
@@ -32,9 +32,9 @@ export class Base {
     paramsObj = removeEmptyValue(paramsObj)
     const queryString = buildQueryString({ ...paramsObj, timestamp })
     const signature = crypto
-        .createHmac('sha256', this.config.apiSecret)
-        .update(queryString)
-        .digest('hex')
+      .createHmac('sha256', this.config.apiSecret)
+      .update(queryString)
+      .digest('hex')
 
     return createRequest({
       method: method,
