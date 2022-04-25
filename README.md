@@ -1,7 +1,4 @@
-# The only official certified SDK of MEXC (MEXC官方唯一SDK) 
-https://github.com/mxcdevelop/mexc-api-sdk
-
-## mexc-api-sdk
+# mexc-api-sdk
 
  MEXC Official Market and trade api sdk, easy to connection and send request to MEXC open api !
  
