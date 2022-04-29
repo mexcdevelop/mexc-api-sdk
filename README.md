@@ -6,7 +6,10 @@
   - To use our SDK you have to install nodejs LTS (https://aws.github.io/jsii/user-guides/lib-user/)
 
 ## Installation
- 1. git clone https://github.com/mxcdevelop/mexc-api-sdk.git
+1. 
+``` 
+git clone https://github.com/mxcdevelop/mexc-api-sdk.git
+```
  2. cd dist/{language} and unzip the file
  3. we offer five language : dotnet, go, java, js, python
 
