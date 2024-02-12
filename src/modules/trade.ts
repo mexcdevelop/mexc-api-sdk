@@ -1,5 +1,5 @@
 import { UserData } from './userData';
-import { fromatData } from '../util'
+import { formatData } from '../util'
 
 export class Trade extends UserData {
     /**
@@ -39,7 +39,7 @@ export class Trade extends UserData {
             type: orderType.toUpperCase()
         }))
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -81,7 +81,7 @@ export class Trade extends UserData {
             type: orderType.toUpperCase()
         }))
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -103,7 +103,7 @@ export class Trade extends UserData {
             symbol: symbol.toUpperCase()
         }))
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -119,7 +119,7 @@ export class Trade extends UserData {
             symbol: symbol.toUpperCase()
         })
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -140,7 +140,7 @@ export class Trade extends UserData {
             symbol: symbol.toUpperCase()
         }))
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -154,7 +154,7 @@ export class Trade extends UserData {
     public openOrders(symbol: string) {
         const res = this.signRequest('GET', '/openOrders', { symbol: symbol.toUpperCase()})
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }
@@ -177,7 +177,7 @@ export class Trade extends UserData {
             symbol: symbol.toUpperCase()
         }))
         const rawData = JSON.parse(res.getBody());
-        const formatDatas = fromatData(rawData);
+        const formatDatas = formatData(rawData);
     
         return formatDatas;
     }

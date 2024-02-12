@@ -1,5 +1,5 @@
 import { Common } from './common';
-import { fromatData } from '../util'
+import { formatData } from '../util'
 
 export class UserData extends Common {
     /**
@@ -10,7 +10,7 @@ export class UserData extends Common {
     public accountInfo() {
       const res = this.signRequest ('GET', '/account')
       const rawData = JSON.parse(res.getBody());
-      const formatDatas = fromatData(rawData);
+      const formatDatas = formatData(rawData);
   
       return formatDatas;
     }
@@ -35,7 +35,7 @@ export class UserData extends Common {
         symbol: symbol.toUpperCase()
       }))
       const rawData = JSON.parse(res.getBody());
-      const formatDatas = fromatData(rawData);
+      const formatDatas = formatData(rawData);
   
       return formatDatas;
     }

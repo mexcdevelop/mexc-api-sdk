@@ -1,5 +1,5 @@
 import { Base } from './base';
-import { fromatData } from '../util'
+import { formatData } from '../util'
 
 export class Market extends Base {
   /**
@@ -22,7 +22,7 @@ export class Market extends Base {
 
     const res = this.publicRequest("GET", "/exchangeInfo", options);
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -47,7 +47,7 @@ export class Market extends Base {
     );
 
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -72,7 +72,7 @@ export class Market extends Base {
     );
 
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -97,7 +97,7 @@ export class Market extends Base {
     );
 
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -126,7 +126,7 @@ export class Market extends Base {
     );
 
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -154,7 +154,7 @@ export class Market extends Base {
       })
     );
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -167,7 +167,7 @@ export class Market extends Base {
   avgPrice(symbol: string) {
     const res = this.publicRequest("GET", "/avgPrice", { symbol: symbol.toUpperCase() });
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -184,7 +184,7 @@ export class Market extends Base {
 
     const res = this.publicRequest("GET", "/ticker/24hr", { symbol });
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -201,7 +201,7 @@ export class Market extends Base {
     
     const res = this.publicRequest("GET", "/ticker/price", { symbol });
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
@@ -217,7 +217,7 @@ export class Market extends Base {
 
     const res = this.publicRequest("GET", "/ticker/bookTicker", { symbol });
     const rawData = JSON.parse(res.getBody());
-    const formatDatas = fromatData(rawData);
+    const formatDatas = formatData(rawData);
 
     return formatDatas;
   }
