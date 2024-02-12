@@ -33,14 +33,14 @@ const buildQueryString = (params: any) => {
       .join('&')
 }
 
-const fromatData = (datas: any): any => {
+const formatData = (datas: any): any => {
     if(Array.isArray(datas)) {
         return datas.map((data: any) => {
-            return fromatData(data)
+            return formatData(data)
         })
     } else if (typeof datas === "object" && datas !== null) {
             const newObj: any = {}
-            Object.entries(datas).map(([key, value]: any[]) => newObj[key] = fromatData(value))
+            Object.entries(datas).map(([key, value]: any[]) => newObj[key] = formatData(value))
             return newObj;
     } else {
         return (datas === undefined || datas === null) ? "" : datas
@@ -52,5 +52,5 @@ export {
     buildQueryString,
     removeEmptyValue,
     isEmptyValue,
-    fromatData
+    formatData
 }
